@@ -118,15 +118,16 @@
         )
 
       async function handleMenuClick(key) {
+        const path = key.key
         const { beforeClickFn } = props
         if (beforeClickFn && isFunction(beforeClickFn)) {
-          const flag = await beforeClickFn(key)
+          const flag = await beforeClickFn(path)
           if (!flag) return
         }
-        emit('menuClick', key)
+        emit('menuClick', path)
 
         isClickGo.value = true
-        menuState.selectedKeys = [key]
+        menuState.selectedKeys = [path]
       }
 
       async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
